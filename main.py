@@ -27,9 +27,13 @@ def main():
         elif opcion == "2":
             print("\nObteniendo tareas desde la API...")
             todos_data = obtener_datos("todos")
-            todos = [Todo(**todo) for todo in todos_data]
+            for todo in todos_data: #se convierte el 'userId' a 'user_id' en los datos obtenidos
+                todo["user_id"] = todo.pop("userId")
+            todos = [Todo(**todo) for todo in todos_data] #se cream instancias de Todo con los datos corregidos
+
             insertar_todos(todos)
             print(f"{len(todos)} tareas guardadas en la base de datos.")
+
 
         elif opcion == "3":
             print("\nConsultando usuarios almacenados...")
