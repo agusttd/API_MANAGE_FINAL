@@ -10,8 +10,7 @@ class User:
 
     def to_dict(self):
         """
-        Convierte el objeto User en un diccionario, útil para enviar a la API.
-        """
+        Se convierte en un diccionario"""
         return {
             "id": self.id,
             "name": self.name,

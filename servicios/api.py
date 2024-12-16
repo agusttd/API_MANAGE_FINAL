@@ -2,9 +2,7 @@ import requests
 from auxiliares.constantes import BASE_URL
 
 def obtener_datos(endpoint):
-    """
-    Realiza una solicitud GET a un endpoint específico de la API.
-    """
+    """Se realiza una solicitud GET al endpoint"""
     url = f"{BASE_URL}/{endpoint}"
     response = requests.get(url)
     if response.status_code == 200:
