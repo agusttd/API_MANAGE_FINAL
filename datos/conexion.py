@@ -6,7 +6,7 @@ def conectar_bd():
         host="localhost",
         user="root",
         password="",
-        database="proyecto"
+        database="api_manage"
     )
 
 def crear_tablas():
