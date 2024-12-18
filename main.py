@@ -16,7 +16,8 @@ def main():
         print("5. Agregar un nuevo usuario (POST)")
         print("6. Actualizar un usuario existente (PUT)")
         print("7. Eliminar un usuario (DELETE)")
-        print("8. Salir")
+        print("8. Verificar contraseña de un Usuario.")
+        print("9. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -60,9 +61,11 @@ def main():
             website = input("Sitio Web: ")
             address = input("Dirección: ")
             company = input("Compañía: ")
+            password = input("Contraseña: ")
 
-            user = User(id, name, username, email, None, address, phone, website, company)
+            user = User(id, name, username, email, password, address, phone, website, company)
             insertar_user_manual(user)
+
 
         elif opcion == "6":
             print("\nActualizar un usuario existente:")
@@ -76,13 +79,36 @@ def main():
             user_id = input("Ingrese el ID del usuario a eliminar: ")
             eliminar_user(user_id)
 
-
         elif opcion == "8":
-            print("\nSaliendo del sistema. ¡Nos vemos:)!")
-            break
+            print("\nVerificar contraseña:")
+            user_id = input("Ingrese el ID del usuario: ")
+            input_password = input("Ingrese la contraseña a verificar: ")
+
+            #se obtiene el user de bd
+            users = obtener_users()
+            user_data = next((u for u in users if u['id'] == int(user_id)), None)
+
+            if user_data:
+                user = User(
+                    user_data['id'], user_data['name'], user_data['username'], 
+                    user_data['email'], user_data['password'], user_data['address'],
+                    user_data['phone'], user_data['website'], user_data['company']
+                )
+
+                #se verifica la contraseña
+                if user.verify_password(input_password):
+                    print("¡Contraseña correcta!")
+                else:
+                    print("Contraseña incorrecta.")
+            else:
+                print("Usuario no encontrado.")
+
+        elif opcion == "9":
+                    print("\nSaliendo del sistema. ¡Nos vemos:)!")
+                    break
 
         else:
-            print("\nOpción no válida. Intente de nuevo.")
+                    print("\nOpción no válida. Intente de nuevo.")
 
 if __name__ == "__main__":
     main()

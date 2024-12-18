@@ -18,13 +18,16 @@ class User:
         hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         return hashed.decode('utf-8')
 
-    def check_password(self, input_password, hashed_password):
-        """Verifica si la contraseña ingresada coincide con el hash"""
-        return bcrypt.checkpw(input_password.encode('utf-8'), hashed_password.encode('utf-8'))
-
+    def verify_password(self, password):
+        """Verifica si una contraseña coincide con el hash almacenado"""
+        if not self.password:
+            return False
+        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
     def __str__(self):
-        return f"[User] ID: {self.id}, Name: {self.name}, Email: {self.email}"
+        return (f"[User] ID: {self.id}, Name: {self.name}, Email: {self.email}, "
+                f"Password: {'ENCRYPTED' if self.password else 'NONE'}, "
+                f"Address: {self.address}, Phone: {self.phone}, Website: {self.website}, Company: {self.company}")
 
     def to_dict(self):
         return {
@@ -32,11 +35,13 @@ class User:
             "name": self.name,
             "username": self.username,
             "email": self.email,
+            "password": self.password,  #aqui ira la contraseña encriptada
             "address": self.address,
             "phone": self.phone,
             "website": self.website,
             "company": self.company
         }
+
 
     def validate_email(self, email):
             """Valida que el formato del email sea correcto"""
