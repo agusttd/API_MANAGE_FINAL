@@ -78,7 +78,7 @@ def main():
 
 
         elif opcion == "8":
-            print("\nSaliendo del sistema. ¡Hasta luego!")
+            print("\nSaliendo del sistema. ¡Nos vemos:)!")
             break
 
         else:
