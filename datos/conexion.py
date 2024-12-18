@@ -62,6 +62,26 @@ def insertar_users(users):
     cursor.close()
     conexion.close()
 
+def insertar_user_manual(user):
+    """Inserta un usuario manualmente en la base de datos."""
+    conexion = conectar_bd()
+    try:
+        with conexion.cursor() as cursor:
+            query = """
+                INSERT INTO users (id, name, username, email, phone, website, address, company)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            cursor.execute(query, (
+                user.id, user.name, user.username, user.email, 
+                user.phone, user.website, user.address, user.company
+            ))
+            conexion.commit()
+    except Exception as e:
+        print(f"Error al insertar el usuario: {e}")
+    finally:
+        conexion.close()
+
+
 def insertar_todos(todos):
     """Inserta una lista de tareas en la base de datos"""
     conexion = conectar_bd()
@@ -93,6 +113,39 @@ def obtener_users():
     cursor.close()
     conexion.close()
     return users
+
+def actualizar_user(user_id, field, new_value):
+    """
+    Actualiza un campo específico de un usuario en la base de datos.
+    """
+    conexion = conectar_bd()
+    try:
+        with conexion.cursor() as cursor:
+            query = f"UPDATE users SET {field} = %s WHERE id = %s"
+            cursor.execute(query, (new_value, user_id))
+            conexion.commit()
+            print(f"Usuario con ID {user_id} actualizado correctamente.")
+    except Exception as e:
+        print(f"Error al actualizar el usuario: {e}")
+    finally:
+        conexion.close()
+
+def eliminar_user(user_id):
+    """
+    Elimina un usuario de la base de datos por su ID.
+    """
+    conexion = conectar_bd()
+    try:
+        with conexion.cursor() as cursor:
+            query = "DELETE FROM users WHERE id = %s"
+            cursor.execute(query, (user_id,))
+            conexion.commit()
+            print(f"Usuario con ID {user_id} eliminado correctamente.")
+    except Exception as e:
+        print(f"Error al eliminar el usuario: {e}")
+    finally:
+        conexion.close()
+
 
 def obtener_todos():
     """Obtiene todas las tareas desde la bd"""
