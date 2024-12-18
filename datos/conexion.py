@@ -63,23 +63,28 @@ def insertar_users(users):
     conexion.close()
 
 def insertar_user_manual(user):
-    """Inserta un usuario manualmente en la base de datos."""
+    """
+    Inserta un usuario manualmente en la base de datos.
+    """
     conexion = conectar_bd()
     try:
         with conexion.cursor() as cursor:
             query = """
-                INSERT INTO users (id, name, username, email, phone, website, address, company)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO users (id, name, username, email, phone, website, address, company, password)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             cursor.execute(query, (
                 user.id, user.name, user.username, user.email, 
-                user.phone, user.website, user.address, user.company
+                user.phone, user.website, user.address, user.company,
+                user.password  #ahora si incluye la contrsaeña xd
             ))
             conexion.commit()
+            print("Usuario insertado correctamente.")
     except Exception as e:
         print(f"Error al insertar el usuario: {e}")
     finally:
         conexion.close()
+
 
 
 def insertar_todos(todos):
