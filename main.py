@@ -83,25 +83,34 @@ def main():
             print("\nVerificar contraseña:")
             user_id = input("Ingrese el ID del usuario: ")
             input_password = input("Ingrese la contraseña a verificar: ")
-
-            #se obtiene el user de bd
+                 #se obtiene el user de bd
             users = obtener_users()
             user_data = next((u for u in users if u['id'] == int(user_id)), None)
 
             if user_data:
+                #Se crea la isntancia del user con los datos
                 user = User(
-                    user_data['id'], user_data['name'], user_data['username'], 
-                    user_data['email'], user_data['password'], user_data['address'],
-                    user_data['phone'], user_data['website'], user_data['company']
+                    user_data['id'], 
+                    user_data['name'], 
+                    user_data['username'], 
+                    user_data['email'], 
+                    None,  # La contraseña no debe encriptarse al crearse (se corrigio)
+                    user_data['address'], 
+                    user_data['phone'], 
+                    user_data['website'], 
+                    user_data['company']
                 )
+                # se asgina el hash manualmente desde la base de datos
+                user.password = user_data['password']
 
-                #se verifica la contraseña
+                #verificamos contraseña
                 if user.verify_password(input_password):
                     print("¡Contraseña correcta!")
                 else:
                     print("Contraseña incorrecta.")
             else:
                 print("Usuario no encontrado.")
+
 
         elif opcion == "9":
                     print("\nSaliendo del sistema. ¡Nos vemos:)!")
