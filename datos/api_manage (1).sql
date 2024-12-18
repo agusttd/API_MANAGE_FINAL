@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2024 a las 00:22:38
+-- Tiempo de generación: 19-12-2024 a las 00:16:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -250,24 +250,33 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `website` varchar(100) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`) VALUES
-(1, 'Leanne Graham', 'Bret', 'Sincere@april.biz'),
-(2, 'Ervin Howell', 'Antonette', 'Shanna@melissa.tv'),
-(3, 'Clementine Bauch', 'Samantha', 'Nathan@yesenia.net'),
-(4, 'Patricia Lebsack', 'Karianne', 'Julianne.OConner@kory.org'),
-(5, 'Chelsey Dietrich', 'Kamren', 'Lucio_Hettinger@annie.ca'),
-(6, 'Mrs. Dennis Schulist', 'Leopoldo_Corkery', 'Karley_Dach@jasper.info'),
-(7, 'Kurtis Weissnat', 'Elwyn.Skiles', 'Telly.Hoeger@billy.biz'),
-(8, 'Nicholas Runolfsdottir V', 'Maxime_Nienow', 'Sherwood@rosamond.me'),
-(9, 'Glenna Reichert', 'Delphine', 'Chaim_McDermott@dana.io'),
-(10, 'Clementina DuBuque', 'Moriah.Stanton', 'Rey.Padberg@karina.biz');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `phone`, `website`, `address`, `company`, `password`) VALUES
+(1, 'Leanne Graham', 'Bret', 'Sincere@april.biz', NULL, NULL, NULL, NULL, NULL),
+(2, 'Ervin Howell', 'Antonette', 'Shanna@melissa.tv', NULL, NULL, NULL, NULL, NULL),
+(3, 'Clementine Bauch', 'Samantha', 'Nathan@yesenia.net', NULL, NULL, NULL, NULL, NULL),
+(4, 'Patricia Lebsack', 'Karianne', 'Julianne.OConner@kory.org', NULL, NULL, NULL, NULL, NULL),
+(5, 'Chelsey Dietrich', 'Kamren', 'Lucio_Hettinger@annie.ca', NULL, NULL, NULL, NULL, NULL),
+(6, 'Mrs. Dennis Schulist', 'Leopoldo_Corkery', 'Karley_Dach@jasper.info', NULL, NULL, NULL, NULL, NULL),
+(7, 'Kurtis Weissnat', 'Elwyn.Skiles', 'Telly.Hoeger@billy.biz', NULL, NULL, NULL, NULL, NULL),
+(8, 'Nicholas Runolfsdottir V', 'Maxime_Nienow', 'Sherwood@rosamond.me', NULL, NULL, NULL, NULL, NULL),
+(9, 'Glenna Reichert', 'Delphine', 'Chaim_McDermott@dana.io', NULL, NULL, NULL, NULL, NULL),
+(10, 'Clementina DuBuque', 'Moriah.Stanton', 'Rey.Padberg@karina.biz', NULL, NULL, NULL, NULL, NULL),
+(12, 'Daniel Castillo', 'danizinx', 'danicas@inacap.cl', '56912345665', 'dani.xddd', 'Luis Durand', 'ina', NULL),
+(13, 'Felipe peña', 'felipes', 'felipe@gmail.com', '565912345213', 'pipe.cl', 'carahue', 'ntt', NULL),
+(14, 'nacho', 'nachoo', 'ignacio@inacap.cl', '56912436745', 'naxo.com', 'villarica', 'entel', '$2b$12$IM/G9jiJy/Z6U4zfeQhY0uwNKfYecdGcuwoPnwiuR2odGf3stUbna'),
+(15, 'seba', 'sess', 'seba@ina.cl', '567934654', 'seee.cl', 'Campo', 'sel', '$2b$12$rl/2niqxLUSTX963vnXdvOH0SNb4DiYOhWPuFiSWDIuG.aitd.B7K');
 
 --
 -- Índices para tablas volcadas
